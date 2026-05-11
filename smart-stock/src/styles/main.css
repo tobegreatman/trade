@@ -1,0 +1,70 @@
+:root {
+  --bg: #0f172a;
+  --surface: #1e293b;
+  --surface2: #334155;
+  --border: #475569;
+  --text: #f1f5f9;
+  --text2: #94a3b8;
+  --accent: #3b82f6;
+  --accent2: #60a5fa;
+  --green: #22c55e;
+  --red: #ef4444;
+  --orange: #f59e0b;
+  --yellow: #eab308;
+  --radius: 8px;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; background: var(--bg); color: var(--text); font-size: 14px; line-height: 1.6; }
+a { color: var(--accent2); text-decoration: none; }
+
+/* NavBar */
+.navbar { display: flex; align-items: center; gap: 8px; padding: 0 24px; height: 52px; background: var(--surface); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+.navbar .logo { font-weight: 700; font-size: 16px; color: var(--accent2); margin-right: 24px; white-space: nowrap; }
+.navbar a { color: var(--text2); font-size: 13.5px; padding: 6px 14px; border-radius: 6px; transition: all .15s; }
+.navbar a:hover { color: var(--text); background: var(--surface2); }
+.navbar a.router-link-exact-active { color: var(--accent2); background: rgba(59,130,246,.12); }
+
+/* Page container */
+.page-container { max-width: 1200px; margin: 0 auto; padding: 28px 24px 60px; }
+
+/* Common */
+h2 { font-size: 20px; font-weight: 700; margin-bottom: 16px; }
+h3 { font-size: 16px; font-weight: 600; margin-bottom: 10px; }
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; margin-bottom: 16px; }
+.card-title { font-size: 14px; font-weight: 600; color: var(--text2); margin-bottom: 12px; text-transform: uppercase; letter-spacing: .5px; }
+.tag { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 4px; font-weight: 600; }
+.tag-bull { background: rgba(34,197,94,.15); color: var(--green); }
+.tag-bear { background: rgba(239,68,68,.15); color: var(--red); }
+.tag-neutral { background: rgba(245,158,11,.15); color: var(--orange); }
+.tag-blue { background: rgba(59,130,246,.15); color: var(--accent2); }
+
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th { text-align: left; color: var(--text2); font-weight: 600; padding: 8px 10px; border-bottom: 1px solid var(--border); font-size: 12px; }
+td { padding: 8px 10px; border-bottom: 1px solid rgba(71,85,105,.4); }
+
+label { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text2); cursor: pointer; padding: 4px 0; }
+label input[type="checkbox"] { accent-color: var(--accent); width: 15px; height: 15px; }
+
+input, select { background: var(--surface2); border: 1px solid var(--border); color: var(--text); padding: 8px 12px; border-radius: 6px; font-size: 13px; outline: none; }
+input:focus, select:focus { border-color: var(--accent); }
+
+.btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border: none; border-radius: 6px; font-size: 13px; cursor: pointer; font-weight: 600; transition: all .15s; }
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:hover { background: #2563eb; }
+.btn-ghost { background: var(--surface2); color: var(--text); }
+.btn-ghost:hover { background: var(--border); }
+.btn-copy { background: rgba(59,130,246,.15); color: var(--accent2); font-size: 12px; padding: 4px 12px; }
+
+.code-block { background: #0d1117; color: #c9d1d9; padding: 14px 16px; border-radius: 6px; font-family: "Consolas", "JetBrains Mono", monospace; font-size: 12.5px; line-height: 1.6; overflow-x: auto; position: relative; margin: 8px 0; white-space: pre-wrap; word-break: break-all; }
+
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+.flex { display: flex; align-items: center; gap: 8px; }
+.flex-between { display: flex; justify-content: space-between; align-items: center; }
+
+@media (max-width: 768px) {
+  .grid-2, .grid-3 { grid-template-columns: 1fr; }
+  .navbar { padding: 0 12px; gap: 4px; overflow-x: auto; }
+  .navbar .logo { margin-right: 12px; }
+  .page-container { padding: 16px 12px; }
+}
