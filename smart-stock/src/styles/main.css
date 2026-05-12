@@ -13,7 +13,11 @@
   --yellow: #eab308;
   --radius: 8px;
 }
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* { margin: 0; padding: 0; box-sizing: border-box; scrollbar-width: thin; scrollbar-color: rgba(255,255,255,.12) transparent; }
+*::-webkit-scrollbar { width: 6px; height: 6px; }
+*::-webkit-scrollbar-track { background: transparent; }
+*::-webkit-scrollbar-thumb { background: rgba(255,255,255,.12); border-radius: 3px; }
+*::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,.22); }
 body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; background: var(--bg); color: var(--text); font-size: 14px; line-height: 1.6; }
 a { color: var(--accent2); text-decoration: none; }
 
@@ -26,6 +30,7 @@ a { color: var(--accent2); text-decoration: none; }
 
 /* Page container */
 .page-container { max-width: 1200px; margin: 0 auto; padding: 28px 24px 60px; }
+.page-container:has(.watchlist-page) { max-width: 100%; padding: 0; overflow: hidden; height: calc(100vh - 52px); }
 
 /* Common */
 h2 { font-size: 20px; font-weight: 700; margin-bottom: 16px; }

@@ -80,6 +80,32 @@ router.get('/breadth', async ctx => {
   }
 })
 
+// 三大指数分时（上证/深证/创业板）
+router.get('/indices/intraday', async ctx => {
+  try {
+    const indices = [
+      { code: '000001', prefix: '1', name: '上证' },
+      { code: '399001', prefix: '0', name: '深证' },
+      { code: '399006', prefix: '0', name: '创业板' },
+    ]
+    const result = {}
+    await Promise.all(indices.map(async ({ code, prefix, name }) => {
+      const url = `https://push2his.eastmoney.com/api/qt/stock/trends2/get?secid=${prefix}.${code}&fields1=f1,f2,f3,f4,f5,f6,f7,f8,f9,f10,f11,f12,f13&fields2=f51,f52,f53,f54,f55,f56,f57,f58&ndays=1&iscr=0`
+      const data = await fetchEM(url)
+      const preClose = data.data?.preClose ?? data.data?.preSettlement ?? 0
+      const trends = (data.data?.trends || []).map(s => {
+        const parts = s.split(',')
+        const time = (parts[0] || '').split(' ')[1] || parts[0]
+        return { time, close: +parts[1], avg: +parts[7], volume: +parts[5] }
+      })
+      result[code] = { name, trends, preClose }
+    }))
+    ctx.body = { ok: true, data: result }
+  } catch (e) {
+    ctx.body = { ok: false, error: e.message }
+  }
+})
+
 // 北向资金近5日
 router.get('/northbound', async ctx => {
   try {
